@@ -49,5 +49,5 @@ while R1 > 0 and D2 > 0 and E > 0:
         else:
             D2 = 0
 
-    print("Dias: {}, R1: {}, D2: {}, E: {}".format(dias, R1, D2, E))
+    print("Dias: {}, R1: {:<2}, D2: {:<2}, E: {:<4}".format(dias, R1, D2, E))
     dias = dias + 1
