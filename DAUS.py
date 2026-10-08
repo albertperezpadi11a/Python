@@ -19,3 +19,8 @@
 # el jugador sumarà a quinze punts i tornarà a tirar de nou- En cas de treure un trio, el jugador sumarà vuit punts i tornarà a tirar. En cas de treure una parella el jugador sumarà dos punts,
 # una parella i dues parelles puntuen el mateix. Guanya el jugador que arribi a cinquanta punts.
 # Si guanya el jugador, s'afegirà al ranking
+menu = "The Best Game In The World".center(50,"*") + "\n1)New Game\n2)New Player\n3)Show Ranking\4)Exit"
+close = False
+while not close:
+    opt = input("Option: ")
+    while not opt.isdigit() or  < opt:
