@@ -1,7 +1,6 @@
 import random
-from random import choice
 
-# Exercici1
+# Exercici 1
 num = random.randint(1,10)
 print(num)
 unum = int(input("Guess the number between 1 and 10: "))
@@ -11,7 +10,7 @@ while unum != num:
 else:
     print("Correct!")
 
-# Exercici2
+# Exercici 2
 num = random.randint(1,100)
 print(num)
 unum = int(input("Guess the number between 1 and 100: "))
@@ -31,7 +30,7 @@ while unum != num and not tries == 0:
 if tries != 0:
     print("Correct!")
 
-# Exercici3
+# Exercici 3
 winner = False
 while not winner:
     num = random.randint(1,3)
@@ -57,7 +56,7 @@ while not winner:
         print("PC chose {}, you chose {}.\nYou lost!".format(pc, user))
         winner = True
 
-# Exercici4
+# Exercici 4
 a = 0
 b = 0
 winned = 0
