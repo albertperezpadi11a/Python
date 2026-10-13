@@ -42,12 +42,12 @@
 total_vivienda = 250000
 aportacion_inicial = 70000
 longhipoteca = 15
-interes = 3.5
+tin = 3.5
 
 capital_inicial = total_vivienda - aportacion_inicial
 numcuotas = longhipoteca * 12
-tin = (interes / 100) / 12
-cuota = capital_inicial * (tin / (1 - (1 + tin) ** -numcuotas))
+interes = (tin / 100) / 12
+cuota = capital_inicial * (interes / (1 - (1 + interes) ** -numcuotas))
 mes = 1
 saldo = capital_inicial
 total_cuotas = 0
@@ -58,17 +58,16 @@ menu = "\n" + "=" * 80 + "\n" + "SIMULACIÓN DE HIPOTECA" + "\n" + "=" * 80 + "\
        "{:24}{:,.2f} €\n".format("Precio total:", total_vivienda) + \
        "{:24}{:,.2f} €\n".format("Aportación inicial:", aportacion_inicial) + \
        "{:24}{:,.2f} €\n".format("Capital hipotecado:", capital_inicial) + \
-       "{:24}{:.2f} %\n".format("Interés anual:", interes) + \
+       "{:24}{:.2f} %\n".format("Interés anual:", tin) + \
        "{:24}{} años\n".format("Duración:", longhipoteca) + \
        "{:24}{}\n".format("Número de cuotas:", numcuotas) + \
-       "{:24}{:,.2f} €\n\n".format("Cuota mensual::", cuota) + \
-       "-" * 80 + "\n" + "{:>5}{:>15}{:>15}{:>20}{:>20}\n".format("Mes", "Cuota", "Intereses", "Amortización",
-                                                                  "Saldo Pendiente") + \
-       "-" * 80 + "\n"
+       "{:24}{:,.2f} €\n\n".format("Cuota mensual::", cuota)
 
-body = ""
+body = "-" * 80 + "\n" + \
+       "{:>5}{:>15}{:>15}{:>20}{:>20}\n".format("Mes", "Cuota", "Intereses", "Amortización", "Saldo Pendiente") + \
+       "-" * 80 + "\n"
 for i in range(0, 180):
-    intereses = saldo * tin
+    intereses = saldo * interes
     amortizacion = cuota - intereses
     saldo = saldo - amortizacion
     body = body + "{:5}{:15,.2f}{:15,.2f}{:20,.2f}{:20,.2f}\n".format(mes, cuota, intereses, amortizacion, saldo)
@@ -80,4 +79,5 @@ footer = "-" * 80 + "\n" + "{:24}{:,.2f} €\n".format("Total pagado en cuotas:"
          "{:24}{:,.2f} €\n".format("Total de intereses:", total_interes) + \
          "{:24}{:,.2f} €\n".format("Total amortizado:", total_amortizado) + \
          "{:24}{:,.2f} €".format("Capital inicial:", capital_inicial)
+
 print(menu + body + footer)
