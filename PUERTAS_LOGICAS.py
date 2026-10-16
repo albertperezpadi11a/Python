@@ -73,4 +73,3 @@ Si T AND P AND NOT V ---> AA
 Si (A AND B) OR (A AND C) OR (B AND C) ---> P
 Si ((C AND N) OR (C AND S)) AND NOT U ---> V
 """
-print(0 % 4 == 0)
