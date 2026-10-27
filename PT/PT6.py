@@ -108,7 +108,7 @@ while bacteria < 10000000:
     minutes = minutes + 3
 hours = minutes // 60
 minutes = minutes % 60
-print("La bacteria ha tardat {} hores i {} minuts en assolir la xifra mortal".format(hours,minutes))
+print("La bacteria ha tardat {} hores i {} minuts en assolir la xifra mortal".format(hours, minutes))
 
 # Exerici 4
 num = 0

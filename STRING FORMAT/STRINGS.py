@@ -24,7 +24,7 @@ for i in range(cadena.count(";")):
         fin = cadena.find(";", ini)
         aux = fin
     nombre = cadena[ini:fin]
-    if nombre_insertar < nombre :
+    if nombre_insertar < nombre:
         cadena = cadena[:ini] + nombre_insertar + ";" + cadena[ini:]
         break
 if len(cadena) == len_ini:

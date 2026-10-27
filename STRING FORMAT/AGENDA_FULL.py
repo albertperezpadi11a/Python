@@ -1,7 +1,7 @@
-menu_00 = "Contacts".center(30,"*") + "\n1)Show Contatcs\n2)New Contact\n3)Edit Contact\n" + \
-                                             "4)Delete Contact\n5)Search Contact\n6)Exit"
-menu_031 = "Editing Contact".center(30,"*") + "\n1)Edit Adrress\n2)Add Phone Number\n3)Delete Phone Number\n4)Go Back"
-menu_05 = "Search Contact".center(30,"*") + "\n1)Search by Name\n2)Search by Address\n3)Search by Number\n4)Go Back"
+menu_00 = "Contacts".center(30, "*") + "\n1)Show Contatcs\n2)New Contact\n3)Edit Contact\n" + \
+          "4)Delete Contact\n5)Search Contact\n6)Exit"
+menu_031 = "Editing Contact".center(30, "*") + "\n1)Edit Adrress\n2)Add Phone Number\n3)Delete Phone Number\n4)Go Back"
+menu_05 = "Search Contact".center(30, "*") + "\n1)Search by Name\n2)Search by Address\n3)Search by Number\n4)Go Back"
 close = False
 flag_00 = True
 flag_03 = False
@@ -21,13 +21,14 @@ while not close:
         if not opt.isdigit():
             print("Option is not numerical")
             input("Press Enter to continue...")
-        elif not int(opt) in range (1,7):
+        elif not int(opt) in range(1, 7):
             print("Option is out of range")
             input("Press Enter to continue...")
         else:
             opt = int(opt)
             if opt == 1:
-                menu_01 = "Contacts List".center(60,"*") + "\n" + "{:25}{:25}{:>10}".format("Name", "Address", "P.Number") + \
+                menu_01 = "Contacts List".center(60, "*") + "\n" + "{:25}{:25}{:>10}".format("Name", "Address",
+                                                                                             "P.Number") + \
                           "\n" + "*" * 60 + "\n"
                 start = 0
                 end = 0
@@ -74,7 +75,7 @@ while not close:
                 else:
                     numbers = ""
                     number_count = int(number_count)
-                    for i in range(1,number_count + 1):
+                    for i in range(1, number_count + 1):
                         phone = input("Phone Number {}: ".format(i))
                         numbers = numbers + phone + "#"
                     contacts = contacts + name + "*" + address + "*" + numbers + ";"
@@ -91,7 +92,7 @@ while not close:
                 flag_00 = False
                 close = True
     while flag_03:
-        menu_03 = "Edit Contact".center(62,"*") + "\n"
+        menu_03 = "Edit Contact".center(62, "*") + "\n"
         start = 0
         end = 0
         for i in range(contacts.count(";")):
@@ -107,12 +108,12 @@ while not close:
             name = contact[:first_spacing]
             address = contact[first_spacing + 1:second_spacing]
             menu_03 = menu_03 + ("{}){:25}{:25}\n".format(i + 1, name, address))
-        print(menu_03 + "{})Go Back".format(contacts.count(";")+1))
+        print(menu_03 + "{})Go Back".format(contacts.count(";") + 1))
         opt = input("Option: ")
         if not opt.isdigit():
             print("Option is not numerical")
             input("Press Enter to continue...")
-        elif not int(opt) in range (1,contacts.count(";") + 2):
+        elif not int(opt) in range(1, contacts.count(";") + 2):
             print("Option is out of range")
             input("Press Enter to continue...")
         else:
@@ -139,7 +140,7 @@ while not close:
         if not opt.isdigit():
             print("Option is not numerical")
             input("Press Enter to continue...")
-        elif not int(opt) in range (1,5):
+        elif not int(opt) in range(1, 5):
             print("Option is out of range")
             input("Press Enter to continue...")
         else:
@@ -174,14 +175,14 @@ while not close:
                 start = contact.find("#", end) + 1
                 end = contact.find("#", start + 1)
             number = contact[start:end]
-            menu_0313 = menu_0313 + "{}){}\n".format(i + 1,number)
+            menu_0313 = menu_0313 + "{}){}\n".format(i + 1, number)
         menu_0313 = menu_0313 + "{})Go Back".format(contact.count("#") + 1)
         print(menu_0313)
         opt = input("Option: ")
         if not opt.isdigit():
             print("Option is out of range")
             input("Press Enter to continue...")
-        elif not int(opt) in range(1,contact.count("#") + 2):
+        elif not int(opt) in range(1, contact.count("#") + 2):
             print("Option is out of range")
             input("Press Enter to continue...")
         else:
@@ -206,7 +207,7 @@ while not close:
                 contacts = contacts[:start_contact] + contact + contacts[end_contact + 1:]
                 print("Number succesfully deleted")
     while flag_04:
-        menu04 = "Delete Contact".center(60,"*") + "\n"
+        menu04 = "Delete Contact".center(60, "*") + "\n"
         start = 0
         end = 0
         for i in range(contacts.count(";")):
@@ -228,12 +229,12 @@ while not close:
         if not opc.isdigit():
             print("Non-Numeric Option ")
             input("Enter to continue")
-        elif not int(opc)  in range(1,contacts.count(";")+2):
+        elif not int(opc) in range(1, contacts.count(";") + 2):
             print("Option Out Of Range")
             input("Enter to continue")
         else:
             opc = int(opc)
-            if opc == contacts.count(";")+1:
+            if opc == contacts.count(";") + 1:
                 flag_00 = True
                 flag_04 = False
             else:
@@ -247,7 +248,7 @@ while not close:
                         start = end + 1
                         end = contacts.find(";", start)
                     contact = contacts[start:end]
-                #print(contact)
+                # print(contact)
                 contacts = contacts[:start] + contacts[end + 1:]
     while flag_05:
         print(menu_05)
@@ -255,7 +256,7 @@ while not close:
         if not opt.isdigit():
             print("Option is not numerical")
             input("Press Enter to continue...")
-        elif not int(opt) in range (1,5):
+        elif not int(opt) in range(1, 5):
             print("Option is out of range")
             input("Press Enter to continue...")
         else:
@@ -308,7 +309,7 @@ while not close:
                                 found_contact = found_contact + ("\n{:>60}".format(number))
                     else:
                         number = contact[second_spacing + 1:contact.find("#")]
-                        numbers =  numbers + number + "#"
+                        numbers = numbers + number + "#"
                         found_contact = ("{:25}{:25}{:>10}".format(name, address, number))
                     if sname and name == search_name:
                         print("Found Contact:\n{}".format(found_contact))

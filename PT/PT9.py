@@ -7,13 +7,13 @@ flag_012 = False
 flag_021 = False
 flag_022 = False
 
-menu000 = "Menu000".center(27,"*") + "\n" + "1)Menu001\n2)Menu002\n3)Exit"
-menu001 = "Menu001".center(27,"*") + "\n" + "1)Menu011\n2)Menu012\n3)Back"
-menu002 = "Menu002".center(27,"*") + "\n" + "1)Menu021\n2)Menu022\n3)Back"
-menu011 = "Menu011".center(27,"*") + "\n" + "1)Menu111\n2)Menu112\n3)Back"
-menu012 = "Menu012".center(27,"*") + "\n" + "1)Menu121\n2)Menu122\n3)Back"
-menu021 = "Menu021".center(27,"*") + "\n" + "1)Menu211\n2)Menu212\n3)Back"
-menu022 = "Menu022".center(27,"*") + "\n" + "1)Menu221\n2)Menu222\n3)Back"
+menu000 = "Menu000".center(27, "*") + "\n" + "1)Menu001\n2)Menu002\n3)Exit"
+menu001 = "Menu001".center(27, "*") + "\n" + "1)Menu011\n2)Menu012\n3)Back"
+menu002 = "Menu002".center(27, "*") + "\n" + "1)Menu021\n2)Menu022\n3)Back"
+menu011 = "Menu011".center(27, "*") + "\n" + "1)Menu111\n2)Menu112\n3)Back"
+menu012 = "Menu012".center(27, "*") + "\n" + "1)Menu121\n2)Menu122\n3)Back"
+menu021 = "Menu021".center(27, "*") + "\n" + "1)Menu211\n2)Menu212\n3)Back"
+menu022 = "Menu022".center(27, "*") + "\n" + "1)Menu221\n2)Menu222\n3)Back"
 
 while not close:
     while flag_000:

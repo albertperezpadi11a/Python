@@ -1,11 +1,11 @@
-#cadena = "Pedro*111111111;Anabel*222222222;Jacinta*333333333;Andres*444444444;"
-#1) mostrar
+# cadena = "Pedro*111111111;Anabel*222222222;Jacinta*333333333;Andres*444444444;"
+# 1) mostrar
 # Pedro     111111111
 # Anabel    222222222
 # Jacinta   333333333
 # Andres    444444444
-#2) Si la cadena esta ordenada, insertar un nuevo contacto, de froma ordenada crecientemente
-#3) Si la cadena no esta ordenada, ordenarla por nombres de forma creciente
+# 2) Si la cadena esta ordenada, insertar un nuevo contacto, de froma ordenada crecientemente
+# 3) Si la cadena no esta ordenada, ordenarla por nombres de forma creciente
 # contacto = "Pedro*111111111"
 # nombre = "Pedro"
 # tfn = "111111111"
@@ -22,15 +22,15 @@ for i in range(cadena.count(";")):
         final = cadena.find(";", inicio)
     contacto = cadena[inicio:final]
     nombre = contacto[:contacto.find("*")]
-    tfn = contacto[contacto.find("*")+1:]
+    tfn = contacto[contacto.find("*") + 1:]
     datos += "{:20}{:>15}\n".format(nombre, tfn)
 print(datos)
 
-#2) si la cadena està ordenada, inserir un nou contacte, de forma ordenada creixentment
+# 2) si la cadena està ordenada, inserir un nou contacte, de forma ordenada creixentment
 print("2)")
 cadena = "Agente*+00 345 67 89 12;Agosto*+00 123 45 67 89;Hachiko*+00 456 78 91 23;Kp*+00 234 56 78 91;"
 contacto_insertar = "Gulio*+00 000 00 00 00"
-contacto= ""
+contacto = ""
 datos = ""
 longitud_inicial = len(cadena)
 for i in range(cadena.count(";")):
@@ -42,8 +42,8 @@ for i in range(cadena.count(";")):
         final = cadena.find(";", inicio)
     contacto = cadena[inicio:final]
     nombre = contacto[:contacto.find("*")]
-    #tfn = contacto[contacto.find("*")+1:]
-    #datos += "{:20}{:>15}\n".format(nombre, tfn)
+    # tfn = contacto[contacto.find("*")+1:]
+    # datos += "{:20}{:>15}\n".format(nombre, tfn)
     if contacto_insertar < contacto:
         cadena = cadena[:inicio] + contacto_insertar + ";" + cadena[inicio:]
         break
@@ -73,7 +73,7 @@ for i in range(cadena.count(";")):
             nuevo_final = nueva_cadena.find(";")
         else:
             nuevo_inicio = nuevo_final + 1
-            nuevo_final = nueva_cadena.find(";",nuevo_inicio)
+            nuevo_final = nueva_cadena.find(";", nuevo_inicio)
         nuevo_contacto = nueva_cadena[nuevo_inicio:nuevo_final]
         nuevo_nombre = nuevo_contacto[:nuevo_contacto.find("*")]
         if nombre < nuevo_nombre:
