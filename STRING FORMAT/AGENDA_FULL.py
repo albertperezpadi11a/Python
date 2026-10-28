@@ -9,9 +9,6 @@ flag_031 = False
 flag_0311 = False
 flag_04 = False
 flag_05 = False
-sname = False
-saddress = False
-snumber = False
 contacts = "Albert Perez Padilla*Jacint Verdaguer 7*682548566#67#69#420#;A*A*A#;B*B*B#;"
 contact = ""
 while not close:
@@ -261,6 +258,9 @@ while not close:
             input("Press Enter to continue...")
         else:
             opt = int(opt)
+            sname = False
+            saddress = False
+            snumber = False
             if opt == 4:
                 flag_05 = False
                 flag_00 = True
@@ -314,12 +314,10 @@ while not close:
                     if sname and name == search_name:
                         print("Found Contact:\n{}".format(found_contact))
                         input("Press Enter to continue...")
-                        sname = False
                         exist = True
                     elif saddress and address == search_address:
                         print("Found Contact:\n{}".format(found_contact))
                         input("Press Enter to continue...")
-                        saddress = False
                         exist = True
                     elif snumber:
                         start = 0
@@ -335,7 +333,6 @@ while not close:
                             if number == search_number:
                                 print("Found Contact:\n{}".format(found_contact))
                                 input("Press Enter to continue...")
-                                snumber = False
                                 exist = True
 
                 if not exist:
