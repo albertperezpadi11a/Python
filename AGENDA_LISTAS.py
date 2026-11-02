@@ -80,7 +80,7 @@ while not close:
     while flag_03:
         menu_03 = "Edit Contact".center(62, "*") + "\n"
         for i in range(len(contacts)):
-            menu_04 = menu_03 + "{}){}; {}\n".format(i + 1, contacts[i][0], contacts[i][1])
+            menu_03 = menu_03 + "{}){}; {}\n".format(i + 1, contacts[i][0], contacts[i][1])
         menu_03 = menu_03 + "{})Go Back".format(len(contacts) + 1)
         print(menu_03)
         opt = input("Option: ")
@@ -92,22 +92,14 @@ while not close:
             input("Press Enter to continue...")
         else:
             opt = int(opt)
-            if opt == contacts.count(";") + 1:
+            if opt == len(contacts) + 1:
                 flag_03 = False
                 flag_00 = True
             else:
-                start_contact = 0
-                end_contact = 0
-                for j in range(opt):
-                    if j == 0:
-                        start_contact = 0
-                        end_contact = contacts.find(";")
-                    else:
-                        start_contact = end_contact + 1
-                        end_contact = contacts.find(";", start_contact)
-                    contact = contacts[start_contact:end_contact + 1]
-                    flag_03 = False
-                    flag_031 = True
+                flag_03 = False
+                flag_031 = True
+                contact = contacts[opt - 1]
+                contact_index = opt - 1
     while flag_031:
         print(menu_031)
         opt = input("Option: ")
@@ -120,17 +112,14 @@ while not close:
         else:
             opt = int(opt)
             if opt == 1:
-                start = contact.find("*") + 1
-                end = contact.find("*", start)
-                print("Current Address: {}".format(contact[start:end]))
+                print("Current Address: {}".format(contact[1]))
                 address = input("New addres: ")
-                contact = contact[:start] + address + contact[end:]
-                contacts = contacts[:start_contact] + contact[:-1] + contacts[end_contact:]
+                contact[1] = address
+                contacts[contact_index] = contact
             elif opt == 2:
-                final = contact.find(";")
                 number = input("New Phone Number: ")
-                contact = contact[:final] + number + "#" + contact[final:]
-                contacts = contacts[:start_contact] + contact[:-1] + contacts[end_contact:]
+                contact[2].append(number)
+                contacts[contact_index] = contact
             elif opt == 3:
                 flag_031 = False
                 flag_0311 = True
@@ -139,46 +128,27 @@ while not close:
                 flag_03 = True
     while flag_0311:
         menu_0313 = "Deleting Number".center(30, "*") + "\n"
-        start = 0
-        end = 0
-        for i in range(contact.count("#")):
-            if i == 0:
-                start = contact.find("*", contact.find("*") + 1) + 1
-                end = contact.find("#", start)
-            else:
-                start = contact.find("#", end) + 1
-                end = contact.find("#", start + 1)
-            number = contact[start:end]
-            menu_0313 = menu_0313 + "{}){}\n".format(i + 1, number)
-        menu_0313 = menu_0313 + "{})Go Back".format(contact.count("#") + 1)
+        for i in range(len(contact[2])):
+            menu_0313 = menu_0313 + "{}){}\n".format(i + 1, contact[2][i])
+        menu_0313 = menu_0313 + "{})Go Back".format(len(contact[2]) + 1)
         print(menu_0313)
         opt = input("Option: ")
         if not opt.isdigit():
             print("Option is out of range")
             input("Press Enter to continue...")
-        elif not int(opt) in range(1, contact.count("#") + 2):
+        elif not int(opt) in range(1, len(contact[2]) + 2):
             print("Option is out of range")
             input("Press Enter to continue...")
         else:
             opt = int(opt)
-            if opt == contact.count("#") + 1:
+            if opt == len(contact[2]) + 1:
                 flag_0311 = False
                 flag_031 = True
             else:
-                start = 0
-                end = 0
-                for j in range(opt):
-                    if j == 0:
-                        start = contact.find("*", contact.find("*") + 1) + 1
-                        end = contact.find("#", start) + 1
-                        if end == 0:
-                            end = contact.find(";")
-                    else:
-                        start = contact.find("#", end - 1)
-                        end = contact.find("#", start + 1)
-                contact = contact[:start] + contact[end:]
-                end_contact = contacts.find(";", start_contact)
-                contacts = contacts[:start_contact] + contact + contacts[end_contact + 1:]
+                contact[2].remove(contact[2][opt - 1])
+                #contact[2].pop(opt - 1)
+                #contacts = contacts[:opt - 1] + contacts[opt:]
+                contacts[contact_index] = contact
                 print("Number succesfully deleted")
     while flag_04:
         menu_04 = "Delete Contact".center(60, "*") + "\n"
@@ -216,10 +186,11 @@ while not close:
             #Pa que Pycharm no me llore
             search_name = ""
             search_address = ""
-            to_search = ""
             search_number = ""
             # hasta qui
             sname = False
+            saddress = False
+            snumber = False
             if opt == 4:
                 flag_05 = False
                 flag_00 = True
@@ -228,18 +199,18 @@ while not close:
                 sname = True
             elif opt == 2:
                 search_address = input("Enter Address to search: ")
+                saddress = True
             elif opt == 3:
                 search_number = input("Enter Number to search: ")
-            if sname:
-                to_search = search_name.lower()
-            else:
-                to_search = search_address.lower()
+                snumber = True
             menu_051 = "Contact List".center(70, "=") + "\n" + "{:30}{:20}{:>20}\n".format("Name", "Address", "Tfn") + "=" * 70 + "\n"
-            if len(to_search) > 0:
+            if sname or saddress:
                 for i in range(len(contacts)):
                     contact = contacts[i]
-                    if (to_search in contact[0].lower() and sname) or (to_search in contact[1].lower() and not sname):
-                        tfns = contact[2]
+                    tfns = contact[2]
+                    # manera anterior = if (to_search in contact[0].lower() and sname) or (to_search in contact[1].lower() and not sname):
+                    # cambio a usar tres boleanos para mantener consistencia con el resto del codigo
+                    if (search_name.lower() in contact[0].lower() and sname) or (search_address.lower() in contact[1].lower() and saddress):
                         for j in range(len(tfns)):
                             tfn = tfns[j]
                             if j == 0:
@@ -250,7 +221,7 @@ while not close:
                             menu_051 = menu_051 + "-" * 70 + "\n"
                 print(menu_051)
                 input("Press Enter to continue...")
-            else:
+            elif snumber:
                 for i in range(len(contacts)):
                     contact = contacts[i]
                     tfns = contact[2]
