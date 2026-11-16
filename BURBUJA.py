@@ -10,8 +10,8 @@ print("Unordered list:", list, sep = "\n")
 #the "for element" loop is executed len(list) - 1 times, which is the lowest amount of iterations needed to fully order any list
 #J called this the "algoritmo de la burbuja"
 
-for step in range(len(list) - 1):
-    for i in range(len(list) - (step + 1)):
+for j in range(len(list) - 1):
+    for i in range(len(list) - (j + 1)):
         if list[i] > list[i + 1]:
             aux = list[i]
             list[i] = list[i + 1]

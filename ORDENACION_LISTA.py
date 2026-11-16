@@ -16,16 +16,3 @@ for i in range(len(list)):
 
 print("Ordered list:", list, sep = "\n")
 
-"""
-list = []
-for j in range(10):
-    list.append(random.randrange(100))
-print(list)
-for pivote in range(len(list) - 1):
-    for i in range(pivote + 1, len(list)):
-        if list[pivote] < list[i]:
-            aux = list[pivote]
-            list[pivote] = list[i]
-            list[i] = aux
-print(list)
-"""

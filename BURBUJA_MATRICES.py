@@ -13,8 +13,8 @@ for i in range(dimension):
 print("Unordered matrix:", data, sep = "\n")
 
 for row in range(dimension):
-    for step in range(len(matrix[row]) - 1):
-        for i in range(len(matrix[row]) - (step + 1)):
+    for j in range(len(matrix[row]) - 1):
+        for i in range(len(matrix[row]) - (j + 1)):
             if matrix[row][i] > matrix[row][i + 1]:
                 aux = matrix[row][i]
                 matrix[row][i] = matrix[row][i + 1]
@@ -28,8 +28,8 @@ for i in range(dimension):
 print("Horizontally ordered matrix:", data, sep = "\n")
 
 for column in range(dimension):
-    for step in range(len(matrix[0]) - 1):
-        for i in range(len(matrix[0]) - (step + 1)):
+    for j in range(len(matrix[0]) - 1):
+        for i in range(len(matrix[0]) - (j + 1)):
             if matrix[i][column] > matrix[i + 1][column]:
                 aux = matrix[i][column]
                 matrix[i][column] = matrix[i + 1][column]
