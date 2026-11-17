@@ -10,13 +10,13 @@ for dni in users:
     name = users[dni]["nombre"]
     address = users[dni]["direccion"]
     buy_list = users[dni]["compras"]
-    for i in range(len(buy_list)):
-        totalb = totalb + buy_list[i]
+    for buy in buy_list:
+        totalb = totalb + buy
     tfns = users[dni]["tfn"]
     for i in range(len(tfns)):
         if i == 0:
             data = data + "{:10}{:25}{:25}{:15}{:>15}\n".format(dni, name, address, tfns[i], totalb)
         else:
-            data = data + "{:60}{}\n".format("",tfns[i])
+            data = data + "{:60}{:15}\n".format("",tfns[i])
     data = data + "-" * 90 + "\n"
 print(menu + data)
