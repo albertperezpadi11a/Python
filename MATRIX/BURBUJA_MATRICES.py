@@ -5,7 +5,7 @@ dimension = 3
 data = ""
 for i in range(dimension):
     matrix.append([])
-    for j in range(4):
+    for j in range(dimension):
         matrix[i].append(random.randrange(100))
         data += str(matrix[i][j]).rjust(5)
     data += "\n"
