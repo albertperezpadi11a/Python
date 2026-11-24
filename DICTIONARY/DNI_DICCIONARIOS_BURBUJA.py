@@ -1,20 +1,24 @@
 lettersDni = ('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C',
               'K', 'E')
-user1 = {"nombre": "Pedro Javier Morales", "direccion": "Flores 36 8o 2o", "tfn": ["+0034345345345"],
+user1 = {"nombre": "Pedro Javier Morales", "direccion": "Flores 36 8º 2ª", "tfn": ["+0034345345345"],
          "compras": [1234, 423, 23]}
-user2 = {"nombre": "Maite Lopez Miravet", "direccion": "Balmes 31 1o 2o", "tfn": ["+0034234234235", "+0034239999235"],
+user2 = {"nombre": "Maite Lopez Miravet", "direccion": "Balmes 31 1º 2ª", "tfn": ["+0034234234235", "+0034239999235"],
          "compras": [12344]}
-user3 = {"nombre": "Marta Garcia Suarez", "direccion": "Valencia 21 3o 1o", "tfn": ["+0075766576575"],
+user3 = {"nombre": "Marta Garcia Suarez", "direccion": "Valencia 21 3º 1ª", "tfn": ["+0075766576575"],
          "compras": [34, 423, 23, 6]}
 users = {"47474747X": user1, "24536425T": user2, "76767676H": user3}
 menu_list = "*" * 90 + "\n{:10}{:25}{:25}{:15}{:>15}\n".format("DNI", "Nombre", "Direccion", "Tfn",
                                                                "Total Compras") + "*" * 90 + "\n"
 menu_00 = "Welcome to the User Management Program".center(50,
                                                           "*") + "\n1)Create User\n2)Modify User\n3)Show Users\n4)Find Users\n5)List Users\n6)Exit"
+menu_02X = "1)Edit Address\n2)Add Tfn\n3)Del Tfn\n4)Go Back"
 menu_04 = "1)Find Users by DNI\n2)Find USers by Name\n3)Go Back"
 menu_05 = "1)List Users by DNI\n2)List Users by Name\n3)List Users by Address\n4)List Users by Total Purchase\n5)Go Back"
 close = False
 flag_00 = True
+flag_02 = False
+flag_02X = False
+flag_02X3 = False
 flag_04 = False
 flag_05 = False
 while not close:
@@ -33,7 +37,6 @@ while not close:
                     input("Press any key to continue")
                 else:
                     dni = dni + lettersDni[int(dni) % 23]
-                    print(dni)
                     name = input("Name: ")
                     address = input("Address: ")
                     num_tfns = input("Number of tfn: ")
@@ -41,21 +44,28 @@ while not close:
                         print("Invalid Option")
                         input("Press any key to continue")
                     else:
+                        num_tfns = int(num_tfns)
                         tfns = []
-                        for i in num_tfns:
-                            tfn = input("Tfn: ")
+                        for i in range(num_tfns):
+                            tfn = input("Tfn{}: ".format(i + 1))
                             tfns.append(tfn)
                         num_buy = input("Number of buy orders: ")
                         if not num_buy.isdigit():
                             print("Invalid Option")
                             input("Press any key to continue")
                         else:
-                            tfns = []
-                            for i in num_tfns:
-                                tfn = input("Tfn: ")
-                                tfns.append(tfn)
+                            num_buy = int(num_buy)
+                            buy_list = []
+                            for i in range(num_buy):
+                                buy = input("Buy Order Price: ")
+                                while not buy.isdigit():
+                                    print("Insert a valid number")
+                                buy = int(buy)
+                                buy_list.append(buy)
+                            users[dni] = {"nombre": name, "direccion": address, "tfn": tfns, "compras": buy_list}
             elif opt == 2:
-                print("b")
+                flag_00 = False
+                flag_02 = True
             elif opt == 3:
                 users_dni = list(users.keys())
                 data = ""
@@ -84,6 +94,66 @@ while not close:
             else:
                 flag_00 = False
                 close = True
+    while flag_02:
+        data = ""
+        users_dni = list(users.keys())
+        for i in range(len(users_dni)):
+            data = data + "{}){} - {}\n".format(i + 1, users_dni[i], users[users_dni[i]]["nombre"])
+            if i == len(users_dni) - 1:
+                data = data + "{})Go Back".format(i + 2)
+        print(data)
+        opt = input("Option: ")
+        if not opt.isdigit() or int(opt) not in range(1, len(users_dni) + 2):
+            print("Invalid Option")
+            input("Press any key to continue")
+        else:
+            opt = int(opt)
+            if opt in range(1, len(users_dni) + 1):
+                dni = users_dni[opt - 1]
+                flag_02 = False
+                flag_02X = True
+            else:
+                flag_02 = False
+                flag_00 = True
+    while flag_02X:
+        print("Editing {} - {}".format(dni, users[dni]["nombre"]))
+        print(menu_02X)
+        opt = input("Option: ")
+        if not opt.isdigit() or int(opt) not in range(1, 5):
+            print("Invalid Option")
+            input("Press any key to continue")
+        else:
+            opt = int(opt)
+            if opt == 1:
+                print("Current Address: {}".format(users[dni]["direccion"]))
+                address = input("New Address: ")
+                users[dni]["direccion"] = address
+            elif opt == 2:
+                tfn = input("New Tfn: ")
+                users[dni]["tfn"].append(tfn)
+            elif opt == 3:
+                flag_02X = False
+                flag_02X3 = True
+            else:
+                flag_02X = False
+                flag_02 = True
+    while flag_02X3:
+        data = ""
+        for i in range(len(users[dni]["tfn"])):
+            data = data + "{}){}\n".format(i + 1, users[dni]["tfn"][i])
+        data = data + "{})Go Back".format(len(users[dni]["tfn"]) + 1)
+        print("Deleting Tfn\n" + data)
+        opt = input("Option: ")
+        if not opt.isdigit() or int(opt) not in range(1, len(users[dni]["tfn"]) + 2):
+            print("Invalid Option")
+            input("Press any key to continue")
+        else:
+            opt = int(opt)
+            if opt == len(users[dni]["tfn"]) + 1:
+                flag_02X3 = False
+                flag_02X = True
+            else:
+                users[dni]["tfn"].remove(users[dni]["tfn"][opt - 1])
     while flag_04:
         print(menu_04)
         opt = input("Option: ")
